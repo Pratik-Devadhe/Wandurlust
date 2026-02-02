@@ -1,0 +1,120 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<style>
+  body {
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  h1 {
+    text-align: center;
+    margin-left: -14rem;
+    margin-bottom: 1rem;
+  }
+
+  form {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  form input,
+  form textarea {
+    width: 500px;
+    padding: 6px;
+    font-size: 16px;
+    margin-bottom: 1.5rem;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+
+  .row {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    background-color: rgb(19, 220, 72);
+    color: black;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+  }
+</style>
+
+<h1>Edit Listing</h1>
+
+<form method="POST" action="/listings/<%= list._id %>?_method=PUT">
+
+  <label for="title">Title</label>
+  <input
+    type="text"
+    id="title"
+    name="listing[title]"
+    value="<%= list.title %>"
+    required
+  >
+
+  <label for="description">Description</label>
+  <textarea
+    id="description"
+    name="listing[description]"
+    required
+  ><%= list.description %></textarea>
+
+  <label for="image">Image URL</label>
+  <input
+    type="text"
+    id="image"
+    name="listing[image]"
+    value="<%= list.image %>"
+  >
+
+  <div class="row">
+    <div class="field">
+      <label for="price">Price</label>
+      <input
+        type="number"
+        id="price"
+        name="listing[price]"
+        value="<%= list.price %>"
+        required
+      >
+    </div>
+
+    <div class="field">
+      <label for="location">Location</label>
+      <input
+        type="text"
+        id="location"
+        name="listing[location]"
+        value="<%= list.location %>"
+        required
+      >
+    </div>
+  </div>
+
+  <label for="country">Country</label>
+  <input
+    type="text"
+    id="country"
+    name="listing[country]"
+    value="<%= list.country %>"
+    required
+  >
+
+  <button type="submit">Update Listing</button>
+</form>

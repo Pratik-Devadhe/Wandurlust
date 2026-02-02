@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/review.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <title>Wanderlust</title>
+</head>
+<body>
+
+  
+<div class="page-container">
+
+<!-- NAVBAR -->
+<header class="navbar">
+
+  <div class="nav-left">
+    <span class="logo">
+      <i class="fa-solid fa-won-sign"></i>
+      wanderlust
+    </span>
+  </div>
+
+  <div class="nav-center">
+    <div class="search-box" id="searchBox">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <input type="text" placeholder="Search destinations" />
+  </div>
+  </div>
+
+  <div class="nav-right">
+    <a href="/listings">Home</a>
+    <a href="/listings/new-listing">Add Listing</a>
+
+    <% if (!currentUser) { %>
+      <a href="/register"><b>Sign up</b></a>
+      <a href="/login"><b>Login</b></a>
+    <% } %>
+
+    <% if (currentUser) { %>
+      <a href="/logout"><b>Logout</b></a>
+    <% } %>
+  </div>
+
+</header>
+
+<!-- FLASH -->
+<% if (error && error.length) { %>
+  <div class="flash flash-error"><%= error[0] %></div>
+<% } %>
+
+<% if (success && success.length) { %>
+  <div class="flash flash-success"><%= success[0] %></div>
+<% } %>
+
+<!-- CONTENT -->
+<div class="content">
+  <%- body %>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2025 wanderlust, Inc.</span>
+  <ul>
+    <li>Privacy</li>
+    <li>Terms</li>
+    <li>Sitemap</li>
+    <li>Company</li>
+  </ul>
+</footer>
+
+
+</body>
+</html>
+
+
+<script>
+  const searchBox = document.getElementById("searchBox");
+  const navbar = document.querySelector(".navbar");
+
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 80) {
+      searchBox.classList.add("collapsed");
+      navbar.classList.add("scrolled");
+    } else {
+      searchBox.classList.remove("collapsed");
+      navbar.classList.remove("scrolled");
+    }
+  });
+</script>
