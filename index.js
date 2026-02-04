@@ -33,9 +33,9 @@ app.use(express.static(path.join(__dirname, "public")));
 
 
 // ================= DATABASE + SESSION + SERVER =================
-const db_url = process.env.ATLAS_URL;
+const db_url = process.env.MONGO_URL;
 const port = process.env.PORT || 8080;
-
+ 
 mongoose
   .connect(db_url)
   .then(() => {

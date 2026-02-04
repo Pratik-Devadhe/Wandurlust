@@ -71,6 +71,7 @@ body{
     border-radius: 999px;
 
     padding: 14px 22px;
+    margin : .3rem 0 .3rem 0;
     width: 420px;
 
     transition: all 0.35s ease;
