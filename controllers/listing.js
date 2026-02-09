@@ -1,5 +1,5 @@
 const Listing = require('../module/listing.js');
-
+const uploadImage = require("../uploadImage");
 
 module.exports.showListings = async(req, res) =>{
 
@@ -17,14 +17,18 @@ module.exports.addNewListing = async (req, res) => {
   try {
     const { title, description, price, location, country } = req.body;
 
+
     if (!req.file) {
       req.flash("error", "Image upload failed or file too large");
       return res.redirect("/listings");
     }
 
+    const { url , name} = await uploadImage(req.file);    // upload the image and get uel and image name
+
+    console.log("image upload");
     const image = {
-      url: req.file.path,       // OK
-      filename: req.file.filename,
+      url,       
+      filename: name,
     };
 
     const owner = res.locals.currentUser._id;

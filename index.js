@@ -1,4 +1,5 @@
 require("dotenv").config();
+console.log(process.env.IMAGEKIT_URL_ENDPOINT);
 
 const express = require("express");
 const app = express();

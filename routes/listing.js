@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-
+const multer = require("multer");
+const upload = multer({ dest: "uploads/" });
 const { isLoggedIn, isOwner } = require("../middleware.js");
 const listingController = require("../controllers/listing.js");
-const { upload } = require("../cloudConfig.js");
+
 
 router.get("/", listingController.showListings);
 
