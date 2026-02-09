@@ -1,0 +1,92 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+
+<style>
+    body {
+        background: linear-gradient(135deg, #e3fdf5, #ffe6fa);
+    }
+
+    .center-page {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 25px;
+    }
+
+    form {
+        width: 450px;
+        padding: 40px 30px;
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        
+    }
+
+    input {
+        width: 100%;
+        height: 50px;
+        border: 1.5px solid #ccc;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        font-size: 15px;
+        font-weight: 600;
+        padding-left: 15px;
+        transition: all 0.3s ease;
+    }
+
+    input:focus {
+        outline: none;
+        border-color: rgb(43, 225, 131);
+        box-shadow: 0 0 8px rgba(43, 225, 131, 0.4);
+    }
+
+    button {
+        width: 100%;
+        height: 50px;
+        border: none;
+        background: linear-gradient(135deg, rgb(43, 225, 131), rgb(25, 180, 105));
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: 700;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0px 8px 20px rgba(43, 225, 131, 0.5);
+    }
+
+    button:active {
+        transform: translateY(0);
+    }
+
+    @media (max-width: 500px) {
+        form {
+            width: 90%;
+        }
+    }
+</style>
+
+<div class="center-page">
+
+    <div class="slogen">
+       <div style="display: flex;  align-items: center; justify-content: center; gap : 10px"> <i class="fa-solid fa-won-sign"></i> 
+        <p>wanderlust</p>
+        </div>
+    </div>
+
+
+<form action="/login" method="POST">
+      <input name="username" placeholder="Username" />
+      <input name="password" type="password" placeholder="Password" />
+      <button>Login</button>
+    </form>
+
+</div>

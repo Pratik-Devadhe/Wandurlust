@@ -1,0 +1,125 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<style>
+  body {
+    background: linear-gradient(135deg, #e3fdf5, #ffe6fa);
+  }
+
+  .center-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+
+  form {
+    width: 450px;
+    padding: 40px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0px 15px 35px rgba(0, 0, 0, 0.15);
+  }
+
+  input {
+    width: 100%;
+    height: 50px;
+    border: 1.5px solid #ccc;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    font-size: 15px;
+    font-weight: 600;
+    transition: 0.3s;
+  }
+
+  .success {
+    border-color: #2be183;
+  }
+
+  .error {
+    border-color: #ff4d4d;
+  }
+
+  .msg {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .msg.success {
+    color: #2be183;
+  }
+
+  .msg.error {
+    color: #ff4d4d;
+  }
+
+  button {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(135deg, #2be183, #19b469);
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+  }
+</style>
+
+<div class="center-page">
+    
+  <form id="signupForm" action="/register" method="POST">
+
+    <input id="username" name="username" placeholder="Username" required />
+    <div id="usernameMsg" class="msg"></div>
+
+    <input name="email" placeholder="Email" required />
+    <input name="password" type="password" placeholder="Password" required />
+
+    <button type="submit">Register</button>
+  </form>
+</div>
+
+<script>
+  const usernameInput = document.getElementById("username");
+  const msg = document.getElementById("usernameMsg");
+  const form = document.getElementById("signupForm");
+
+  let isUsernameAvailable = false;
+
+  usernameInput.addEventListener("input", async () => {
+    const username = usernameInput.value.trim();
+
+    if (username.length < 3) {
+      msg.textContent = "";
+      usernameInput.classList.remove("success", "error");
+      return;
+    }
+
+    const res = await fetch(`/check-username?username=${username}`);
+    const data = await res.json();
+
+    if (data.available) {
+      msg.textContent = "✅ Username available";
+      msg.className = "msg success";
+      usernameInput.classList.add("success");
+      usernameInput.classList.remove("error");
+      isUsernameAvailable = true;
+    } else {
+      msg.textContent = "❌ Username already taken";
+      msg.className = "msg error";
+      usernameInput.classList.add("error");
+      usernameInput.classList.remove("success");
+      isUsernameAvailable = false;
+    }
+  });
+
+  form.addEventListener("submit", (e) => {
+    if (!isUsernameAvailable) {
+      e.preventDefault();
+      alert("Please choose another username");
+    }
+  });
+</script>

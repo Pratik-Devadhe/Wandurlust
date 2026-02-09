@@ -1,0 +1,122 @@
+<% layout("/layouts/boilerplate") %>
+
+
+<style>
+
+    /* body{
+        width : 100vw;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    } */
+    
+    h1{
+        text-align: center;
+        margin-left: -14rem;
+        margin-bottom: 0;
+    }
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* GROUP */
+.form-group {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+/* LABEL */
+label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #333;
+}
+
+/* INPUT & TEXTAREA */
+input, textarea {
+    width: 100%;
+    height: 36px;
+    padding-left: 8px;
+    font-size: 15px;
+    border-radius: 5px;
+    border: 1px solid #333;
+}
+
+textarea {
+    min-height: 150px;
+    padding-top: 6px;
+}
+
+/* ROW */
+.row {
+    display: flex;
+    gap: 2rem;
+    width: 500px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.field input {
+    width: 100%;
+}
+
+/* BUTTON */
+button {
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 8px 14px;
+    color: white;
+    cursor: pointer;
+    background-color: rgb(255, 0, 0);
+    border: none;
+}
+</style>
+
+<h1> Create New Listing</h1>
+<form method="post" action="/listings/new" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" placeholder="Enter the villa name" required>
+    </div>
+
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" name="description"
+            placeholder="Description" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="image">Upload Listing Image</label>
+        <input type="file" id="image" name="image">
+    </div>
+
+    <div class="row">
+        <div class="field">
+            <label for="price">Price</label>
+            <input type="number" id="price" placeholder="Enter the price" name="price" required>
+        </div>
+
+        <div class="field">
+            <label for="location">Location</label>
+            <input type="text" id="location" placeholder="Enter the location" name="location" required>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="country">Country</label>
+        <input type="text" id="country" placeholder="Enter the country" name="country" required>
+    </div>
+
+    <button>Add Listing</button>
+
+</form>

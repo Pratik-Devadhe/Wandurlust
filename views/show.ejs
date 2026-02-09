@@ -1,0 +1,345 @@
+
+<% layout("/layouts/boilerplate.ejs") %>
+
+<style>
+/* RESET + BASE */
+body {
+    margin: 0;
+    padding: 0;
+    background: #f7f7f7;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #222;
+}
+
+h1, h2 {
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+/* BUTTONS */
+button {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+button:hover {
+    background: #000;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* IMAGE / HEADER SECTION */
+.image {
+    background: #fff;
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image img {
+    width: 100%;
+    max-width: 450px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 16px;
+}
+
+.image h2 {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.image h3 {
+    margin: 0.5rem 0;
+    font-size: 1.5rem;
+}
+
+.image div {
+    color: #777;
+    font-size: 0.95rem;
+}
+
+/* INFO CARD */
+.info {
+    background: #fff;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    gap: 1.5rem;
+}
+
+.des {
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+.price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #27ae60;
+    white-space: nowrap;
+}
+
+/* REVIEW FORM */
+.review {
+    background: #fff;
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.review p {
+    margin: 0.25rem 0;
+}
+
+#range {
+    width: 100%;
+}
+
+#comment {
+    width: 100%;
+    min-height: 90px;
+    border-radius: 10px;
+    font-size: 15px;
+    padding: 12px;
+    border: 1px solid #ddd;
+    resize: vertical;
+}
+
+#comment:focus {
+    outline: none;
+    border-color: #000;
+}
+
+/* REVIEWS LIST */
+.review-card {
+    background: #fff;
+    max-width: 700px;
+    margin: 1rem auto;
+    padding: 1rem 1.25rem;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+.review-card strong {
+    font-size: 0.95rem;
+}
+
+.review-card p {
+    margin: 0.5rem 0;
+    color: #444;
+}
+
+/* ACTION BUTTONS */
+.edit-btn {
+    background: #f1f1f1;
+    font-weight: 600;
+    margin: 1rem auto;
+    display: block;
+}
+
+.edit-btn:hover {
+    background: #000;
+    color: #fff;
+}
+
+.delete-btn {
+    background: #ff4d4d;
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    margin: 0 auto 2rem;
+    display: block;
+}
+
+.delete-btn:hover {
+    background: #d63031;
+}
+
+.map-card {
+    background: #fff;
+    max-width: 700px;
+    margin: 1rem auto;
+    padding: 1rem 1.25rem;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+#map {            
+        height: 400px;
+        width: 100%;
+}
+
+</style>
+
+    <h1>Here's the full information</h1>
+
+    
+    <div class="image">
+        
+     <img src="<%= list.image.url %>" >  
+
+     <h2> own by: <%= list.owner.username %></h2>
+
+     <h3 style="margin-bottom: 0;">   <%=list.title%>    </h3>
+
+     <div style="margin: 0 0 12px 12px; ">
+        <%=list.location%>,  
+        <%=list.country%>
+    </div>
+    </div>  
+
+
+    <div class="info">
+
+        <div class="des">
+            <%=list.description%>  
+        </div>
+        <hr style="height: 62px;">
+        <div class="price">
+            &#8377; &nbsp;<%=list.price%>  /Day
+        </div>
+
+    </div>
+<!--      
+       -->
+    <% if(currentUser) {%>
+    <form action="/review/<%=list.id%>" method="post">
+
+        <div class="review">
+        <p style="align-self: start;" ><b>Leave a review -</b></p>
+       
+        <p style="align-self: start; ">Rating : </p>
+        <fieldset class="starability-slot">
+            <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="1" checked aria-label="No rating." />
+            <input type="radio" id="first-rate1" name="rating" value="1" />
+            <label for="first-rate1" title="Terrible">1 star</label>
+            <input type="radio" id="first-rate2" name="rating" value="2" />
+            <label for="first-rate2" title="Not good">2 stars</label>
+            <input type="radio" id="first-rate3" name="rating" value="3" />
+            <label for="first-rate3" title="Average">3 stars</label>
+            <input type="radio" id="first-rate4" name="rating" value="4" />
+            <label for="first-rate4" title="Very good">4 stars</label>
+            <input type="radio" id="first-rate5" name="rating" value="5" />
+            <label for="first-rate5" title="Amazing">5 stars</label>
+        </fieldset>
+
+        <p style="align-self: start;">Comment : </p>
+        <textarea id="comment" name="comment" placeholder="Add the comment"></textarea>
+
+        
+        <button type="submit"> Submit review </button>  
+    </div>
+
+    <hr>
+    </form>
+
+    <% }%>
+
+
+
+<% if (list.reviews.length != 0) { %>
+
+    <h2>Reviews</h2>
+  <% list.reviews.forEach(review => { %>
+    <form action="/review/<%=review._id%>/<%= list._id %>?_method=delete" method="post">
+        <div class="review-card">
+            <strong>@<%= review.author.username %></strong><br>
+            <strong><%= review.name %></strong><br>
+      <h3>Rating:</h3> 
+        <p class="starability-result" data-rating="<%= review.rating %>"> </p>
+      <b><p><%= review.comment %></p></b>
+        <button type="submit"> Delete Review</button>
+    </div>
+    </form>
+  <% }) %>
+<% } %>
+
+    <div class="map-card">
+        <h3>Location Map</h3>
+    
+        <div id="map"></div>
+    </div>
+
+    <!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script>
+    // ✅ Get data from backend using EJS
+    const locationName = "<%= list.location %>";
+    const country = "<%= list.country %>";
+    const searchQuery = `${locationName}, ${country}`;
+
+    // ✅ Initialize map
+    const map = L.map('map', {
+        scrollWheelZoom: false
+    }).setView([20, 78], 5);
+
+    // ✅ OpenStreetMap tiles
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // ✅ Google-style marker
+    const googleIcon = L.icon({
+        iconUrl: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
+        iconSize: [32, 32],
+        iconAnchor: [16, 32]
+    });
+
+    // ✅ Convert location + country → coordinates
+    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(searchQuery)}`)
+        .then(res => res.json())
+        .then(data => {
+            if (!data || data.length === 0) return;
+
+            const lat = data[0].lat;
+            const lon = data[0].lon;
+
+            map.setView([lat, lon], 14);
+
+            L.marker([lat, lon], { icon: googleIcon })
+                .addTo(map)
+                .bindPopup(`<b>${locationName}</b><br>${country}`)
+                .openPopup();
+        })
+        .catch(err => console.error("Map error:", err));
+    </script>
+
+
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    
+
+    <form method="get" action="/listings/<%=list.id%>/edit">
+        <button class="edit-btn">Edit the info</button>   
+    </form>
+
+   
+    <form method="post" action="/listings/<%=list.id%>?_method=DELETE">
+        <button class="delete-btn">Delete listings</button>
+    </form>
+
+    

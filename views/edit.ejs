@@ -1,0 +1,139 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<style>
+  h1 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  form {
+
+    background-color: #f9f9f9;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 2rem 2.5rem;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Common field wrapper */
+  .field {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin-bottom: 1.5rem;
+  }
+
+  .field label {
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+
+  .field input,
+  .field textarea {
+    padding: 6px;
+    font-size: 16px;
+    border: 1px solid black;
+    border-radius: 5px;
+  }
+
+  textarea {
+    min-height: 150px;
+  }
+
+  /* Row for Price & Location */
+  .row {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .row .field {
+    width: 220px;
+  }
+
+  button {
+    background-color: rgb(19, 220, 72);
+    color: black;
+    font-weight: 600;
+    padding: 8px 14px;
+    margin-bottom: 0.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+  }
+</style>
+<h1>Edit Listing</h1>
+
+<form method="POST" action="/listings/<%= list._id %>?_method=PUT">
+
+  <div class="field">
+    <label for="title">Title</label>
+    <input
+      type="text"
+      id="title"
+      name="listing[title]"
+      value="<%= list.title %>"
+      required
+    >
+  </div>
+
+  <div class="field">
+    <label for="description">Description</label>
+    <textarea
+      id="description"
+      name="listing[description]"
+      required
+    ><%= list.description %></textarea>
+  </div>
+
+  <div class="field">
+    <label for="image">Image URL</label>
+    <input
+      type="text"
+      id="image"
+      name="listing[image]"
+      value="<%= list.image %>"
+    >
+  </div>
+
+  <div class="row">
+    <div class="field">
+      <label for="price">Price</label>
+      <input
+        type="number"
+        id="price"
+        name="listing[price]"
+        value="<%= list.price %>"
+        required
+      >
+    </div>
+
+    <div class="field">
+      <label for="location">Location</label>
+      <input
+        type="text"
+        id="location"
+        name="listing[location]"
+        value="<%= list.location %>"
+        required
+      >
+    </div>
+  </div>
+
+  <div class="field">
+    <label for="country">Country</label>
+    <input
+      type="text"
+      id="country"
+      name="listing[country]"
+      value="<%= list.country %>"
+      required
+    >
+  </div>
+
+  <button type="submit">Update Listing</button>
+</form>

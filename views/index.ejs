@@ -1,0 +1,194 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+    <style>
+       
+       
+/* FILTER BAR */
+.filters {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+    padding: 1rem 2rem;
+    overflow-x: auto;
+    margin-top: 1.2rem;
+}
+
+/* EACH ICON FILTER */
+.filter {
+    min-width: 7rem;
+    text-align: center;
+    opacity: 0.7;
+}
+
+.filter:hover {
+    opacity: 1.2;
+    cursor: pointer;
+}
+
+.filter p {
+    font-size: 14px;
+}
+
+.filter i {
+    font-size: 15px;
+}
+
+/* TAX FILTER (EXPANDS) */
+.tax-filter {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 0.75rem 0 1rem 0;
+    border: 1px solid black;
+    border-radius: 1rem;
+    flex: 1;               /* ⭐ takes remaining width */
+    justify-content: center;
+}
+
+/* TAX FILTER TEXT */
+.tax-filter p {
+    font-size: 15px;
+    margin: 0 1rem 0 0;
+}
+
+.toggle {
+    position: relative;
+    width: 52px;
+    height: 28px;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    background-color: #e0e0e0;
+    border-radius: 34px;
+    transition: 0.3s;
+}
+
+.slider:hover{
+    cursor: pointer;
+}
+
+.slider::before {
+    content: "";
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.toggle input:checked + .slider {
+    background-color: #1e90ff;
+}
+
+.toggle input:checked + .slider::before {
+    transform: translateX(24px);
+}
+
+.tax-info{
+    display: none;
+}
+
+    </style>
+
+    <div class="filters">
+        
+        <div class="filter">
+            <i class="fa-solid fa-fire"></i>
+            <p>Tranding</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-house"></i>
+            <p>Home</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-mountain"></i>
+            <p>mountain</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-road"></i>
+            <p>Beach</p>
+        </div>
+        <div class="filter">
+            <i class="fa-regular fa-flag"></i>
+            <p>Fort</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-chair"></i>
+            <p>Rest</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-plane"></i>
+            <p>Holiday</p>
+        </div>
+        <div class="filter">
+            <i class="fa-solid fa-sun"></i>
+            <p>deserts</p>  
+        </div>
+
+        <div class="tax-filter">
+            <p> Display total after taxes</p>
+            <label class="toggle">
+                <input type="checkbox" id="taxToggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+    </div>
+
+    <div class="slogen">
+        <h2>Stay Smart, Book Fast — Your Perfect Hotel Awaits !</h2>
+    </div>
+
+    </div>
+
+    <div class="all-listings">
+
+    <% for(Listing of Listings){%>
+
+        <div class="each-listing">
+
+             <a href="/listings/<%= Listing.id %>"> <img src="<%=Listing.image.url%>"> </a>
+
+             <div class="each-listing-body">
+                <h4> <%= Listing.title %>  </h4>
+                  
+                <p>
+                    &#8377;<%=Listing.price%> /night <i class="tax-info"> &nbsp; +18% GST</i>
+                </p>
+             </div>
+
+
+        </div>
+    <%}%>
+
+    </div>
+
+
+    <script>
+    const taxToggle = document.getElementById("taxToggle");
+
+    taxToggle.addEventListener("change", function () {
+            let tax_info = document.getElementsByClassName('tax-info');
+
+            for(info of tax_info){
+                if(info.style.display == "inline"){
+                    info.style.display = "none";
+                }else{
+                    info.style.display = "inline";
+                }
+            }
+            
+       
+    });
+</script>
