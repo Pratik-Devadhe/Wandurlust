@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  app:
+    image: pratik180264/wandurlust:latest
+    container_name: wandurlust_app
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - app-network
+
+networks:
+  app-network:
