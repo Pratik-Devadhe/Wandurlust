@@ -9,7 +9,8 @@ module.exports.showListings = async(req, res) =>{
 };
 
 
-module.exports.renderNewListingForm = (req , res) =>{
+module.exports.renderNewListingForm = (req , res) =>{ 
+  console.log("form render sucessfully");
   res.render("add.ejs");
 };
 
@@ -17,33 +18,35 @@ module.exports.addNewListing = async (req, res) => {
   try {
     const { title, description, price, location, country } = req.body;
 
+    console.log("reached at add new listings");
 
     if (!req.file) {
       req.flash("error", "Image upload failed or file too large");
       return res.redirect("/listings");
     }
 
-    const { url , name} = await uploadImage(req.file);    // upload the image and get uel and image name
+     const {url , name} = await uploadImage(req.file);  // upload the image and get uel and image name
 
-    console.log("image upload");
-    const image = {
-      url,       
-      filename: name,
-    };
+    console.log("image uploaded");
 
     const owner = res.locals.currentUser._id;
 
     const newListing = new Listing({
-      title,
-      description,
-      image,
-      price,
-      location,
-      country,
-      owner,
+          title,
+          description,
+          price,
+          location,
+          image: {
+              url,
+              filename: name,
+          },
+          country,
+          owner,
     });
 
     await newListing.save();
+
+    console.log("listing saved");
     res.redirect("/listings");
 
   } catch (err) {
