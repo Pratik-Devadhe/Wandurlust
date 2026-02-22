@@ -4,8 +4,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js",
-    "seed": "node init/index.js"
+    "dev": "nodemon index.js"
   },
   "dependencies": {
     "@types/passport-local-mongoose": "^6.1.5",
