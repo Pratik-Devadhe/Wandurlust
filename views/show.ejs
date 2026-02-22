@@ -191,6 +191,40 @@ button:hover {
         width: 100%;
 }
 
+/* ✅ MOBILE */
+@media (max-width: 768px) {
+
+    .image,
+    .info,
+    .review,
+    .review-card,
+    .map-card {
+        width: 95%;
+    }
+
+    .image img {
+        height: 220px;
+    }
+
+    .info {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    .price {
+        font-size: 1.2rem;
+    }
+
+    #map {
+        height: 250px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
 </style>
 
     <h1>Here's the full information</h1>

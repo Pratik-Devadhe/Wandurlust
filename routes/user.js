@@ -1,11 +1,19 @@
 const express = require('express');
 const router = express.Router();
 const passport = require('passport');
-const {savedRedirectUrl} = require('../middleware.js');
+const {savedRedirectUrl, isLoggedIn} = require('../middleware.js');
 const userController = require('../controllers/user.js');
 
 
 router.get("/check-username", userController.checkUsername);
+
+// router.get("/userReview" , isLoggedIn , userController.userReveiew);
+
+router
+    .route("/userReview")
+    .get(isLoggedIn , userController.userReveiew)
+    .post(isLoggedIn , userController.saveUserReview);
+
 // Register
 router
     .route("/register")

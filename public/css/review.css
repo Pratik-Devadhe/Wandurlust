@@ -195,3 +195,63 @@
   -webkit-transition: background-position .7s;
   transition: background-position .7s;
 }
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 768px) {
+
+    .image,
+    .info,
+    .review,
+    .review-card,
+    .map-card {
+        width: 95%;
+        margin: 1rem auto;
+    }
+
+    .image img {
+        height: 220px;
+    }
+
+    /* Info section stacks vertically */
+    .info {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .des {
+        margin-bottom: 1rem;
+    }
+
+    .price {
+        font-size: 1.2rem;
+    }
+
+    #map {
+        height: 250px;
+    }
+
+    button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .image img {
+        height: 200px;
+    }
+
+    h1 {
+        font-size: 1.4rem;
+        padding: 0 10px;
+    }
+
+    .review {
+        padding: 1rem;
+    }
+
+    .review-card {
+        padding: 1rem;
+    }
+}

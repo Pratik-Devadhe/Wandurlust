@@ -1,4 +1,5 @@
 const User = require("../module/user.js");
+const UserReview = require("../module/userReview.js");
 
 module.exports.renderRegisterForm = (req, res) => {
   res.render("signup.ejs");
@@ -57,4 +58,32 @@ module.exports.logoutUser = (req, res, next) => {
     req.flash("success", "logged out successfully");
     res.redirect("/listings");
   });
+};
+
+module.exports.userReveiew = (req , res) => {
+  res.render('userReview.ejs');
+}
+
+
+  module.exports.saveUserReview = async (req, res) => {
+  try {
+    const { message } = req.body;
+
+    if (!res.locals.currentUser) {
+      return res.redirect("/login");
+    }
+
+    const review = new UserReview({
+      message,
+      owner: res.locals.currentUser._id
+    });
+
+    await review.save();
+
+    res.redirect("/listings");
+
+  } catch (err) {
+    console.log(err);
+    res.redirect("/listings");
+  }
 };

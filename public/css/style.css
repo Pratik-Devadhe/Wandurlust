@@ -273,3 +273,88 @@ footer ul{
 footer ul li{
     margin-right: 20px;
 }
+
+/* ================= MOBILE RESPONSIVE ================= */
+
+@media (max-width: 1024px) {
+
+    /* Listings grid → 3 columns */
+    .each-listing {
+        grid-column: span 4;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* NAVBAR */
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .nav-left,
+    .nav-center,
+    .nav-right {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .nav-right {
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    /* SEARCH */
+    .search-box {
+        width: 100%;
+        padding: 10px 16px;
+    }
+
+    .search-box.collapsed {
+        width: 100%;
+    }
+
+    /* LISTINGS GRID → 2 columns */
+    .each-listing {
+        grid-column: span 6;
+    }
+
+    .each-listing img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    /* FOOTER */
+    footer {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        gap: 1rem;
+        text-align: center;
+    }
+
+    footer ul {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* LISTINGS GRID → 1 column */
+    .each-listing {
+        grid-column: span 12;
+    }
+
+    .each-listing img {
+        height: 240px;
+    }
+
+    .slogen h2 {
+        font-size: 1rem;
+        padding: 15px;
+    }
+}
