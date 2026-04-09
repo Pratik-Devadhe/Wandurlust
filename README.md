@@ -1,6 +1,6 @@
-# 🌍 Wandurlust — Full-Stack Travel Experience Web App
+# 🌍 Wandeurlust — Full-Stack Travel Experience Web App
 
-Welcome to **Wandurlust**, a full-stack travel listing web application that lets users explore, list, review, and save travel stays. Inspired by platforms such as Airbnb, this application incorporates dynamic image uploads, secure authentication, and an intuitive UI to deliver a modern travel experience.
+Welcome to **Wandeurlust**, a full-stack travel listing web application that lets users explore, list, review, and save travel stays. Inspired by platforms such as Airbnb, this application incorporates dynamic image uploads, secure authentication, and an intuitive UI to deliver a modern travel experience.
 
 ---
 
