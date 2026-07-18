@@ -11,12 +11,12 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Deploy via SSH
-        uses: appleboy/ssh-action@v1.0.3
+        uses: appleboy/ssh-action@v1.2.3
         with:
-          host: ${{ secrets.SSH_WANDURLUST_USER }}
+          host: ${{ secrets.SSH_WANDURLUST_HOST }}
           username: root
           key: ${{ secrets.SSH_WANDURLUST_KEY }}
           script: |
