@@ -1,5 +1,5 @@
 require("dotenv").config();
-console.log(process.env.IMAGEKIT_URL_ENDPOINT);
+console.log(process.env.ATLAS_URL);
 
 const express = require("express");
 const app = express();
@@ -92,7 +92,7 @@ mongoose
 
     // ===== START SERVER =====
     app.listen(port, "0.0.0.0", () => {
-      console.log(`Server running on port ${port} v2`);
+      console.log(`Server running on port ${port} v4`);
     });
   })
   .catch((err) => {
