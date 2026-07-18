@@ -1,0 +1,25 @@
+name: Deploy Github actions to ubuntu
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on:  ubuntu-latest
+
+    steps:
+      -name: Checkout code
+      uses: actions/checkout@v4
+
+      -name: deplot via SSH
+      uses: appleboy/ssh-active@v1.0.3
+      with: 
+        host: ${{secrets.SSH_WANDURLUST_USER}}
+        username: root;
+        key: ${{ secrets.SSH_WANDURLUST_KEY}}
+        script:
+          cd /home/pratik-devadhe/Desktop/deply
+          git pull
+          docker compose up -d --build
