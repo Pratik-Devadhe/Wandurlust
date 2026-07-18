@@ -92,7 +92,7 @@ mongoose
 
     // ===== START SERVER =====
     app.listen(port, "0.0.0.0", () => {
-      console.log(`Server running on port ${port} v1`);
+      console.log(`Server running on port ${port} v2`);
     });
   })
   .catch((err) => {
